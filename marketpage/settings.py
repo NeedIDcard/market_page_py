@@ -75,8 +75,16 @@ WSGI_APPLICATION = 'marketpage.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'marketplace',
+        'USER': 'root',          # 본인의 MySQL 유저명
+        'PASSWORD': 'root',  # 본인의 MySQL 비밀번호
+        'HOST': '127.0.0.1',     # 로컬 개발용
+        'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+            # 10만 명 트래픽 대비: 커넥션 타임아웃 등 추가 설정 가능
+        }
     }
 }
 
